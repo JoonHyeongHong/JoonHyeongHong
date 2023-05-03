@@ -16,13 +16,16 @@ function solution(food) {
   for (let i = 1; i < food.length; i++) {
     //음식의 수가 홀수든 짝수든 2로 나누었을 때의 몫만큼 음식을 채우면 됩니다.
     const cnt = Math.floor(food[i] / 2);
-    if (cnt > 0) result.push(...Array(cnt).fill(j));
+
+    // i번쨰 음식의 수의 절반만큼 result에 넣어줍니다.
+    // ex) result.push(2,2,2)
+    if (cnt > 0) result.push(...Array(cnt).fill(i));
   }
+
   //food[0]은 언제나 물이기 때문에 0을 넣었습니다.
   result.push(0);
 
   for (let j = food.length; j >= 1; j--) {
-    //음식의 수가 홀수든 짝수든 2로 나누었을 때의 몫만큼 음식을 채우면 됩니다.
     const cnt = Math.floor(food[j] / 2);
     if (cnt > 0) result.push(...Array(cnt).fill(j));
   }
