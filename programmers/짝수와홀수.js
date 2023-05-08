@@ -8,4 +8,10 @@ function solution(num) {
   // 따라서 해당 코드를 고친다면 Math.abs(num) % 2 === 1 ? 'Odd' : 'Even'이 될 것이다.
 
   return Math.abs(num) % 2 === 1 ? "Odd" : "Even";
+
+  //조금 더 간략화 하는 방법으로 num % 2 ? "Odd" : "Even"으로 === 1 도 지워버리는 경우다.
+  //이유는 만약 ? 앞에 값이 1(=true)라면 자연스래 "Odd"가 나올 것이고
+  //짝수라 0이라면 0(=false)라서 자연스래 "Even"이 반환될 것이기 때문이다.
+  //Math.abs() 함수도 필요가 없는 이유는 -1도 true로 치기 때문이다.
+  //정확히는 자바스크립트는 0이 아닌 모든 값을 true로 친다
 }
