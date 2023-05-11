@@ -2,6 +2,7 @@
 - 👀 I’m interested in front-end
 - 🌱 I’m currently learning javascript
 - 📫 How to reach me , email jshwa0429@gmail.com
+- my blog is here : https://velog.io/@sesa0802
 
 <!---
 JoonHyeongHong/JoonHyeongHong is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
