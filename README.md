@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @JoonHyeongHong
 - 👀 I’m interested in front-end
 - 🌱 I’m currently learning javascript
-- 📫 How to reach me , email jshwa0429@gmail.com
+- 📫 How to reach me , email sesa0802@naver.com
 - my blog is here : https://velog.io/@sesa0802
 
 <!---
