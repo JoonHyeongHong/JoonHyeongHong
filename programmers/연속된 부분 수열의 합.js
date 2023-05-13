@@ -152,7 +152,7 @@ function solution(sequence, k) {
 
   //그 뒤 제일 차이가 작은 값이 우선적으로
   //그 다음은 left가 제일 작은 값이 먼저 오도록 정렬해준다.
-  return stack.sort((a, b) => {
+  return answer.sort((a, b) => {
     const diff = a[1] - a[0] - (b[1] - b[0]);
     if (diff !== 0) return diff;
     return a[0] - b[0];
