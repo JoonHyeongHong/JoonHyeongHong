@@ -10,10 +10,7 @@ M이상 N이하의 소수를 모두 출력하는 프로그램을 작성하시오
 */
 
 const fs = require("fs");
-const input = fs
-  .readFileSync("/home/sesa/JS_Cote/boj/example.txt")
-  .toString()
-  .split(" ");
+const input = fs.readFileSync("/dev/stdin").toString().split(" ");
 
 //한줄 M N 밖에 없으므로, split("\n")이 아니라 split(" ") 민 해주었다.
 
