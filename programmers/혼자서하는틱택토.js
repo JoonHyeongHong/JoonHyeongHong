@@ -4,6 +4,8 @@ function whoIsWinner(board) {
   let xWin = false;
   let on = false;
   const o = new Array(3).fill(new Array(3).fill("X"));
+
+  //가로
   for (let i = 0; i < board.length; i++) {
     const row = board[i];
     if (row[0] === ".") continue;
@@ -13,11 +15,12 @@ function whoIsWinner(board) {
       if (row[0] === "O") {
         o[i] = o[i].map((el) => ++el);
         oWin = true;
-      } else {
+      } else if (row[0] === "X") {
         xWin = true;
       }
     }
   }
+
   //세로
   for (let i = 0; i < 3; i++) {
     if (board[i][i] === ".") continue;
@@ -27,28 +30,27 @@ function whoIsWinner(board) {
         o[1][i] += 1;
         o[2][i] += 1;
         oWin = true;
-      } else {
+      } else if (board[0][i] === "X") {
         xWin = true;
       }
     }
   }
-  //대각선
+  //오른쪽 대각선
   if (
     board[0][0] !== "." &&
     board[0][0] === board[1][1] &&
     board[1][1] === board[2][2]
   ) {
-    if (board[0][2] === "O") {
+    if (board[0][0] === "O") {
       o[0][0] += 1;
       o[1][1] += 1;
       o[2][2] += 1;
       oWin = true;
-    } else {
+    } else if (board[0][0] === "X") {
       xWin = true;
     }
     on = true;
   }
-
   if (
     board[0][2] !== "." &&
     board[0][2] === board[1][1] &&
@@ -60,11 +62,10 @@ function whoIsWinner(board) {
       o[2][0] += 1;
       oWin = true;
       on = true;
-    } else {
+    } else if (board[0][2] === "X") {
       xWin = true;
     }
   }
-
   if (on) {
     let oCnt = o.reduce(
       (acc, cur) => acc + cur.reduce((acc2) => acc + 1, 0),
@@ -89,8 +90,9 @@ function whoIsWinner(board) {
   )
     return "O";
 
-  if (oWin) return "O";
-  if (xWin) return "X";
+  if (oWin && !xWin) return "O";
+  if (xWin && !oWin) return "X";
+  if (oWin && xWin) return 0;
   return "Draw";
 }
 
@@ -113,6 +115,7 @@ function solution(board) {
   if (x > o) return 0;
 
   const winner = whoIsWinner(board);
+  console.log(winner);
   //만약 승패가 결정났을 때
   if (winner) {
     if (winner === "O") {
@@ -123,7 +126,4 @@ function solution(board) {
       return o >= x ? (o % x <= 1 ? 1 : 0) : 0;
     }
   } else return 0;
-  //O가 승리했다면 OX의 총합은 홀수
-  //X가 승리했거나 그냥 끝났다면 짝수
-  return o >= x ? 1 : 0;
 }
