@@ -6,34 +6,45 @@
 상근이는 환경에 매우 관심이 많기 때문에, 나무를 필요한 만큼만 집으로 가져가려고 한다. 이때, 적어도 M미터의 나무를 집에 가져가기 위해서 절단기에 설정할 수 있는 높이의 최댓값을 구하는 프로그램을 작성하시오.
 */
 
+//입력을 위한 fs
 const fs = require("fs");
 const input = fs
   .readFileSync("/home/sesa/JS_Cote/boj/example.txt")
   .toString()
   .split("\n");
 
+// 나무 수 n, 가져가려는 나무의 길이 m
 const [n, m] = input[0].split(" ").map(Number);
+// 다음 줄은 나무의 높이들
 const trees = input[1]
   .split(" ")
   .slice(0, n)
   .map(Number)
-  .sort((a, b) => a - b);
+  .sort((a, b) => a - b); // 이진탐색을 위한 정렬
 
-let left = 0;
-let right = trees[n - 1];
-let answer = Number.MIN_SAFE_INTEGER;
-let middle = 0;
+let left = 0; // 절단할 높이의 최솟값
+let right = trees[n - 1]; // 절단할 높이의 최대값
+let answer = Number.MIN_SAFE_INTEGER; // 앞으로 구할 절단 높이 변수
+let middle = 0; //중간값 (미정)
+
 while (left <= right) {
-  let sum = 0;
-  middle = Math.floor((left + right) / 2);
+  // 이진탐색의 경우 left가 right와 같아질때까지 반복한다
+  let sum = 0; // m의 값과 비교하기 위한 변수
+  middle = Math.floor((left + right) / 2); //중간값은 정수여야하므로 Math.floor()로 버린다
   for (const tree of trees) {
+    // 나무 높이끼리 계산해서 sum을 구한다
     sum += tree > middle ? tree - middle : 0;
   }
+
+  //sum이 m보다 작다는 소리는, tree - middle 값을 높이기 위해
+  //middle 값이 작아져야하므로, right를 middle - 1로하여, middle = Math.floor(left+middle-1)/2 로 만든다
   if (sum < m) {
     right = middle - 1;
   } else if (sum >= m) {
+    //반대로 sum이 m보다 크거나 같은 소리는, 가져야가야할 나무만큼을 충족했다는 의미이므로
+    //일단 middle이 answer보다 큰지 여부에 따라, 더 큰 값을 answer에 저장시킨다
     if (middle > answer) answer = middle;
-    left = middle + 1;
+    left = middle + 1; // 그 뒤 다음 값을 구하기 위해(여전히 sum>=m이 되야하므로) left에 middle +1을 할당한다
   }
 }
-console.log(answer);
+console.log(answer); // 그렇게 반복하여 구한 answer 값이 바로 최대값이다
