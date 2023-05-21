@@ -5,9 +5,13 @@
 */
 
 function solution(price, money, count) {
-  var answer = -1;
 
+  // i번째 인덱스에 price * (i+1) 의 값이 들어있는 배열을 구현했다
   const arr = new Array(count).fill(price).map((el, idx) => el * (idx + 1));
+
+  //총 합은 해당 배열의 원소의 합
   const total = arr.reduce((acc, cur) => acc + cur, 0);
+
+  // 따라서 총합이 보유중인 금액보다 많으면, 뺴기를 해서 얼마나 부족한지 반환하고, 부족하지 않다면 0을 반환한다.
   return total > money ? total - money : 0;
 }

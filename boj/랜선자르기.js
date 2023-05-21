@@ -20,13 +20,20 @@ const solution = (K, N, nums) => {
   while (start <= end) {
     let sum = 0;
     middle = Math.floor((start + end) / 2);
+
+    //nums에 있는 원소들을 middle로 나눈 몫값을 sum에 더한다
     for (const num of nums) {
       sum += Math.floor(num / middle);
     }
+
+    //sum이 원하던 갯수보다 많거나 같으면 
+    //middle을 늘려본다.
     if (sum >= N) {
       start = middle + 1;
       answer = answer >= middle ? answer : middle;
     } else {
+    
+        //작다면 middle을 줄여본다
       end = middle - 1;
     }
   }

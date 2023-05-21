@@ -42,5 +42,3 @@ function solution(numbers) {
     })
     .reverse();
 }
-
-solution([9, 1, 5, 3, 6, 2]);
