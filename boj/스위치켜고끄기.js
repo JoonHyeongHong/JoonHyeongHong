@@ -40,25 +40,25 @@ for (let i = 0; i < peopleCount; i++) {
 }
 
 const controllByMale = (switchIndex) => {
-  for (let i = switchIndex - 1; i < switchArr.length; i += switchIndex) {
+  for (let i = switchIndex - 1; i < switchLength; i += switchIndex) {
     if ((i + 1) % switchIndex === 0) {
       switchArr[i] = !switchArr[i] ? 1 : 0;
     }
   }
 };
 
-const checkDecalcomani = (switchIndex, diff) => {
+const checkSymmetry = (switchIndex, diff) => {
   return switchArr[switchIndex - diff] === switchArr[switchIndex + diff];
 };
 
 const controllByFemale = (switchIndex) => {
   const index = switchIndex - 1;
   switchArr[index] = !switchArr[index] ? 1 : 0;
-  for (let i = 1; i < Math.floor(switchArr.length / 2); i++) {
-    if (index - i >= 0 && index + i < switchArr.length) {
-      if (checkDecalcomani(index, i)) {
+  for (let i = 1; i < Math.floor(switchLength / 2); i++) {
+    if (index - i >= 0 && index + i < switchLength) {
+      if (checkSymmetry(index, i)) {
         switchArr[index - i] = !switchArr[index - i] ? 1 : 0;
-        switchArr[index + i] = !switchArr[index + i] ? 0 : 1;
+        switchArr[index + i] = !switchArr[index + i] ? 1 : 0;
       } else {
         break;
       }
@@ -67,6 +67,7 @@ const controllByFemale = (switchIndex) => {
     }
   }
 };
+
 for (const command of commands) {
   const [gender, switchIndex] = command;
   if (gender === male) {
@@ -76,6 +77,6 @@ for (const command of commands) {
   }
 }
 
-for (let i = 0; i <= switchArr.length; i += 20) {
+for (let i = 0; i < switchLength; i += 20) {
   console.log(switchArr.slice(i, i + 20).join(" "));
 }
