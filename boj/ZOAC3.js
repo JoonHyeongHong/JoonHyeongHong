@@ -61,7 +61,7 @@ for (const s of string) {
       Math.abs(coordinate[0] - currentLeft[0]) +
       Math.abs(coordinate[1] - currentLeft[1]);
     currentLeft = coordinate;
-  } else {
+  } else if (checkLeftRight(s) === left) {
     const coordinate = findLocation(qwertyRight, s);
     time +=
       Math.abs(currentRight[0] - coordinate[0]) +
