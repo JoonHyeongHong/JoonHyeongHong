@@ -3,7 +3,7 @@
 비는 충분히 많이 온다. 고이는 빗물의 총량은 얼마일까?
 */
 
-const { count } = require("console");
+
 const fs = require("fs");
 const input = fs
   .readFileSync("/home/sesa/JS_Cote/boj/example.txt")

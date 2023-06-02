@@ -14,7 +14,8 @@ const input = fs
   .split("\n");
 
 const basedString = input[0].split("");
-const nextString = (string) => {
+
+const getNextString = (string) => {
   const nextString = [];
   for (let i = 0; i < basedString.length; i++) {
     const newString = [...string];
@@ -48,7 +49,7 @@ const compareString = (a, b) => {
 const solution = () => {
   let newString = new Array(basedString.length).fill("");
   for (let i = 0; i < basedString.length; i++) {
-    newString = nextString(newString);
+    newString = getNextString(newString);
     console.log(newString.join(""));
   }
 };
