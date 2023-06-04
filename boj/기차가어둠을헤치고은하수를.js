@@ -56,11 +56,8 @@ for (const row of input) {
   }
 }
 
-const trainCheck = [];
+const trainCheck = new Set();
 for (const check of train) {
-  const string = check.join("");
-  if (trainCheck.indexOf(string) < 0) {
-    trainCheck.push(string);
-  }
+  trainCheck.add(check.join(""));
 }
-console.log(trainCheck.length);
+console.log(trainCheck.size);
