@@ -29,31 +29,30 @@ const [N, M] = input.shift().split(" ").map(Number);
 const train = Array.from({ length: N }, () =>
   Array.from({ length: 20 }, () => 0)
 );
+
+const orders = [
+  (i, x) => {
+    train[i][x] = 1;
+  },
+  (i, x) => {
+    train[i][x] = 0;
+  },
+  (i) => {
+    train[i].unshift(0);
+    train[i].pop();
+  },
+  (i) => {
+    train[i].shift();
+    train[i].push(0);
+  },
+];
+
 for (const row of input) {
   const [order, i, x] = row
     .split(" ")
     .map(Number)
     .map((el) => el - 1);
-  switch (order) {
-    case 0:
-      //i번쨰 기차에 x번째 좌석에 사람을 태워라.
-      if (!train[i][x]) train[i][x] = 1;
-      break;
-    case 1:
-      //i번째 기차에 x번쨰 좌석에 사람을 하차시켜라.
-      if (train[i][x]) train[i][x] = 0;
-      break;
-    case 2:
-      //i번째 기차에 앉은 승객들은 한칸씩 뒤로 간다. 20번째 자리에 사람이 앉아있다면 그 사람 하차
-      train[i].unshift(0);
-      train[i].pop();
-      break;
-    case 3:
-      // 한칸씩 앞으로 간다. ... 그 사람 하차
-      train[i].shift();
-      train[i].push(0);
-      break;
-  }
+  orders[order](i, x);
 }
 
 const trainCheck = new Set();
