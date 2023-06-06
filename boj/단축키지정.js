@@ -41,7 +41,7 @@ const getShortcutList = (input) => {
       }
     }
 
-    return (shortcutList[words] = words);
+    shortcutList[words] = words;
   };
 
   for (const words of input) {
