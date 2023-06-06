@@ -7,3 +7,35 @@
 
 욱제는 구사과의 위치를 모르기 때문에, 구사과가 이동을 시작하는 위치와 관계없이 선물을 주는 방법을 알아내려고 한다. 최소 몇 개의 칸 위에 선물을 놓으면, 구사과가 항상 선물을 가져가는지 구하는 프로그램을 작성하시오. 선물이 놓여진 칸에 구사과가 이동하면, 구사과는 항상 선물을 가져간다.
 */
+
+const moveObj = {
+  E: (position) => {
+    return position + 1;
+  },
+  W: (position) => {
+    return position - 1;
+  },
+};
+
+const fs = require("fs");
+const input = fs
+  .readFileSync("/home/sesa/JS_Cote/boj/example.txt")
+  .toString()
+  .trim()
+  .split("\n");
+
+const N = Number(input[0]);
+const moves = input[1].split("");
+const map = new Array(N).fill(0);
+for (let x = 0; x < N; x++) {
+  let position = x;
+  const newMoves = [...moves];
+  while (newMoves[position] !== "" && map[position] === 0) {
+    const command = newMoves[position];
+    newMoves[position] = "";
+    position = moveObj[command](position);
+  }
+  map[position]++;
+}
+
+console.log(map.filter((el) => el !== 0).length);
