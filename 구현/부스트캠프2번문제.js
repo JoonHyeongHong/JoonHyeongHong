@@ -68,3 +68,5 @@ console.log(
     "LONG",
   ])
 );
+
+console.log(solution(["BOOL", "BOOL", "SHORT", "SHORT"]));
