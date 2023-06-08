@@ -43,7 +43,7 @@ const T = Number(input.shift());
 const rotateArray = (array, angle) => {
   return angle >= 0
     ? rotateToRight(array, (angle % 360) / 45)
-    : rotateToLeft(array, (Math.abs(angle) % 360) / 45);
+    : rotateToRight(array, (360 - (Math.abs(angle) % 360)) / 45);
 };
 
 const rotateToRight = (array, times) => {
