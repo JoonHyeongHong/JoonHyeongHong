@@ -42,12 +42,13 @@ const input = fs
 const T = Number(input.shift());
 const rotateArray = (array, angle) => {
   return angle >= 0
-    ? rotateToRight(array, (angle % 360) / 45)
-    : rotateToRight(array, (360 - (Math.abs(angle) % 360)) / 45);
+    ? rotate(array, (angle % 360) / 45)
+    : rotate(array, (360 - (Math.abs(angle) % 360)) / 45);
 };
 
-const rotateToRight = (array, times) => {
+const rotate = (array, times) => {
   if (times === 0) return array;
+
   const n = array.length;
   const newArray = Array.from({ length: n }, (_, idx) => [...array[idx]]);
   for (let depth = 0; depth < Math.floor(n / 2); depth++) {
@@ -68,34 +69,7 @@ const rotateToRight = (array, times) => {
       newArray[limitOfArray][y - distanceMovedAtOneTime] =
         array[limitOfArray][y];
   }
-  return rotateToRight(newArray, times - 1);
-};
-
-const rotateToLeft = (array, times) => {
-  if (times === 0) return array;
-  const n = array.length;
-  const newArray = Array.from({ length: n }, (_, idx) => [...array[idx]]);
-  for (let time = 0; time < times; time++) {
-    for (let depth = 0; depth < Math.floor(n / 2); depth++) {
-      const distanceMovedAtOneTime = Math.floor(n / 2) - depth;
-      const limitOfArray = n - 1 - depth;
-
-      for (let x = depth; x < limitOfArray; x = x + distanceMovedAtOneTime)
-        newArray[x + distanceMovedAtOneTime][depth] = array[x][depth];
-
-      for (let y = depth; y < limitOfArray; y = y + distanceMovedAtOneTime)
-        newArray[limitOfArray][y + distanceMovedAtOneTime] =
-          array[limitOfArray][y];
-
-      for (let x = limitOfArray; x > depth; x = x - distanceMovedAtOneTime)
-        newArray[x - distanceMovedAtOneTime][limitOfArray] =
-          array[x][limitOfArray];
-
-      for (let y = limitOfArray; y > depth; y = y - distanceMovedAtOneTime)
-        newArray[depth][y - distanceMovedAtOneTime] = array[depth][y];
-    }
-  }
-  return rotateToLeft(newArray, times - 1);
+  return rotate(newArray, times - 1);
 };
 
 for (let t = 0; t < T; t++) {
