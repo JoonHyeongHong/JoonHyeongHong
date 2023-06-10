@@ -20,8 +20,6 @@ const solution = () => {
 
   const cleanRoom = () => {
     if (map[x][y] === notClean) {
-      console.log(x, y);
-      console.log(map.map((el) => el.join("")).join("\n"));
       map[x][y] = clean;
     }
 
