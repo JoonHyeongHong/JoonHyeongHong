@@ -7,11 +7,6 @@ const input = fs
 
 const T = Number(input.shift());
 
-const obj = {
-  "+": (a, b) => a + b,
-  "-": (a, b) => a - b,
-  " ": (a, b) => a * 10 + b,
-};
 const solution = (number) => {
   const makeZero = (currentNumber, expression) => {
     if (currentNumber === number) {
