@@ -5,9 +5,6 @@ const input = fs
   .trim()
   .split("\n");
 
-const house = 1;
-const chicken = 2;
-
 const [N, M] = input[0].split(" ").map(Number);
 const map = [];
 for (let i = 1; i <= N; i++) {
